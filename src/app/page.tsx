@@ -15,7 +15,7 @@ export default function Home() {
             <h1>
               {" "}
               THE <span className="gradcolor">AFRICAN REBIRTH</span> VISION
-              INTERNAT'L{" "}
+              INTERNAT&apos;L{" "}
             </h1>
             <p>...Rebuilding and Rebranding the African Continent</p>
 
@@ -93,7 +93,7 @@ export default function Home() {
             {" "}
             TARVi traces its roots to a successful partnership between Hapel
             Group, a leading construction heavyweight in Nigeria, and
-            Stefanutti, one of Africa's largest construction companies.
+            Stefanutti, one of Africa&apos;s largest construction companies.
           </p>
           <p>
             {" "}
@@ -104,12 +104,12 @@ export default function Home() {
           </p>
           <p>
             Our mission revolves around fostering constructive public and
-            private partnerships, leveraging resources for Africa's development,
+            private partnerships, leveraging resources for Africa&apos;s development,
             and promoting favorable investment climates.
           </p>
 
           <p>
-            Through strategic media partnerships, we aim to enhance Africa's
+            Through strategic media partnerships, we aim to enhance Africa&apos;s
             appeal, encourage investment, and drive sustained economic growth.
           </p>
         </div>

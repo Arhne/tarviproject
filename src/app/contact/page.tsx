@@ -13,7 +13,7 @@ const Contact = () => {
       <p>
         We strive to stay in communication with our clients. Have a question
         about our business, or want to see if we match your specific needs? Send
-        us a message, or give us a call. We're always happy to meet new clients!
+        us a message, or give us a call. We&apos;re always happy to meet new clients!
       </p>
       <button className={styles.btn} type="button">
         <FaWhatsapp size={30} style={{ color: "rgb(11, 190, 23)" }} />

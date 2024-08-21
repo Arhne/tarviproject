@@ -57,7 +57,7 @@ const Footer = () => {
           (+234) 0808 660 0000
         </p>
         <p>
-          (South/South): No, 3 Umunkwo Street Off St Bridget's School Opposite
+          (South/South): No, 3 Umunkwo Street Off St Bridget&apos;s School Opposite
           Labour Party Office Asaba Delta State, Nigeria.Phone: (+234) 0808 550
           0000
         </p>
