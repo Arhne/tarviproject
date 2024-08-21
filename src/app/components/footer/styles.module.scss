@@ -1,0 +1,109 @@
+.footer {
+  padding-top: 50px;
+  color: #a8a9a8;
+  background-color: rgb(42, 43, 42);
+ 
+  .upperfooter {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    padding-inline: 50px;
+  p{
+    padding-bottom: 15px;
+   }
+  }
+  .flex {
+    display: flex;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 45px;
+    align-items: center;
+   
+  }
+  .office {
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-block: 30px;
+  }
+  .lowerfooter {
+    background-color: #191919;
+    padding-block: 50px 30px;
+    width: 100%;
+    text-align: center;
+    padding-inline: 50px;
+    & > * {
+      padding-bottom: 20px;
+    }
+    .desktopmenu {
+      display: flex;
+      gap: .3rem;
+      justify-content: center;
+      align-items: center;
+      
+      color: #fff;
+      .menulist {
+        border-right: 2px solid #fff;
+        padding-right: 20px;
+       
+        &:hover {
+          color: rgb(11, 190, 23);
+        }
+        &:last-child{
+            border-right: none;
+        }
+      }
+    }
+    p {
+      color: #a8a9a8;
+    }
+  }
+}
+@media (min-width: 50rem) {
+//   .footer {
+//     padding-inline: 100px;
+
+//     .flex {
+//       display: flex;
+//       font-size: 2rem;
+//       font-weight: 600;
+//       line-height: 45px;
+//       align-items: center;
+//       color: black;
+//     }
+//     .office {
+//       color: #fff;
+//       font-size: 1.5rem;
+//       font-weight: 400;
+//       margin-block: 30px;
+//     }
+//     .lowerfooter {
+//       background-color: #191919;
+//       padding-block: 50px 30px;
+//       width: 100%;
+//       text-align: center;
+//       & > * {
+//         padding-bottom: 20px;
+//       }
+//       .desktopmenu {
+//         display: flex;
+//         gap: 1.75rem;
+//         justify-content: center;
+//         align-items: center;
+//         color: #fff;
+//         .menulist {
+//           border-right: 2px solid #fff;
+//           padding-right: 20px;
+//           &:hover {
+//             color: rgb(11, 190, 23);
+//           }
+//         }
+//       }
+//       p {
+//         color: #a8a9a8;
+//       }
+//     }
+//   }
+}

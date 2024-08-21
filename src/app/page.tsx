@@ -1,95 +1,128 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
+import Card from "./components/custom-card/index";
+import { objectives } from "./components/constants";
+import visionImg from "./components/assests/03.webp";
+import missionImg from "./components/assests/02.webp";
+import { Banners } from "./components/custom-banner/index";
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <div className={styles.homewrap}>
+        <div className={styles.hometext}>
+          <div>
+            <h1>
+              {" "}
+              THE <span className="gradcolor">AFRICAN REBIRTH</span> VISION
+              INTERNAT'L{" "}
+            </h1>
+            <p>...Rebuilding and Rebranding the African Continent</p>
+
+            <p>Building Trade, Finance and Investment Bridges across Africa</p>
+          </div>
         </div>
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <h1 className={styles.brand_desc}>
+        Who We <span className="gradcolor">Are</span>
+
+      </h1>
+      <div className={styles.motto} id="about">
+        <p>
+          The African Rebirth Vision International (TARVi) supports constructive
+          public and private partnerships, representing local and foreign
+          investments across Africa. Our core objective is to safeguard and
+          advance business and community interests by engaging with government
+          bodies, and regulators. We advocate for favorable regulations and
+          legislation that foster investment, economic growth, and job creation.
+        </p>
+
+        <p>
+          By proactively addressing challenges and promoting investment
+          potentials through media partnerships, we aim to enhance the
+          attractiveness of African countries, encourage rebranding, and
+          stimulate investor interest, ultimately fostering sustained economic
+          development.
+        </p>
       </div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+      <Banners
+        title="OUR SHARED"
+        picture={visionImg}
+        gradtitle="VISION"
+        content={`Rebuilding and rebranding to create an empowered Africa,
+       utilizing its abundant resources for the benefit of all,
+        while fostering sustainable growth and promoting equitable foreign partnerships`}
+        titletwo="OUR"
+        picturetwo={missionImg}
+        gradtitletwo="MISSION"
+        contenttwo={` Our mission is to champion Africa's development and economic growth 
+        through a bottom-up approach, guiding governments to adopt inclusive 
+        policies and initiatives. `}
+        secondcontent={`  We strive to attract foreign partnerships that align with our values, 
+                        ensuring that Africa's resources are harnessed responsibly and utilized to uplift 
+                        African communities, foster entrepreneurship, and drive sustainable development.
+                       `}
+      />
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+      <section className={styles.objectivesection}>
+        {" "}
+        <h1> Objectives</h1>
+        <div className={styles.objectiv}>
+          {objectives.map((objective) => (
+            <div key={objective.key}>
+              <Card
+                // icon={<objective.img size={120}/>}
+                icon={<div style={{ fontSize: "120px" }}>{objective.img}</div>}
+                title={objective.heading}
+                content={objective.text}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
+      <section className={styles.history}>
+       
+        <div className={styles.brand_history}>
+          <h1>
+            Our <span className="gradcolor">History</span>
+          </h1>
           <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            {" "}
+            TARVi traces its roots to a successful partnership between Hapel
+            Group, a leading construction heavyweight in Nigeria, and
+            Stefanutti, one of Africa's largest construction companies.
           </p>
-        </a>
-      </div>
-    </main>
+          <p>
+            {" "}
+            This collaboration generated over 5,000 jobs and 200 infrastructure
+            projects, benefiting local communities. Inspired by this success,
+            TARVi was established to build upon past achievements and expand
+            efforts across Africa.{" "}
+          </p>
+          <p>
+            Our mission revolves around fostering constructive public and
+            private partnerships, leveraging resources for Africa's development,
+            and promoting favorable investment climates.
+          </p>
+
+          <p>
+            Through strategic media partnerships, we aim to enhance Africa's
+            appeal, encourage investment, and drive sustained economic growth.
+          </p>
+        </div>
+
+        <Image
+          src="/historyimg.jpg"
+          width={800}
+          height={800}
+          className={styles.sideimg}
+          alt="advert"
+        />
+      </section>
+
+    </>
   );
 }
