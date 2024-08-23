@@ -15,7 +15,7 @@ export default function Home() {
             <h1>
               {" "}
               THE <span className="gradcolor">AFRICAN REBIRTH</span> VISION
-              INTERNAT&apos;L{" "}
+              INTERNATIONAL{" "}
             </h1>
             <p>...Rebuilding and Rebranding the African Continent</p>
 

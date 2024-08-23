@@ -5,6 +5,7 @@ import styles from "./style.module.scss";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
+// import { document } from "postcss";
 
 const Navbar = () => {
   const NAV_LINKS = [
@@ -36,8 +37,9 @@ const Navbar = () => {
   ];
 
   const pathname = usePathname();
-  const [activeLink, setActiveLink] = useState("");
+  const [activeLink, setActiveLink] = useState<string>("");
   const [menu, setMenu] = useState(false);
+  const [fadeOut, setFadeOut] = useState<boolean>(false);
 
   useEffect(() => {
     const currentHash = window.location.hash;
@@ -53,6 +55,32 @@ const Navbar = () => {
     }
   }, [pathname, activeLink]);
 
+  const handleMenuToggle = () => {
+    setMenu(!menu);
+
+    const body = document.querySelector("body") as HTMLElement;
+
+    if (body) {
+      if (!menu) {
+        body.classList.add("no-scroll");
+      } else {
+        body.classList.remove("no-scroll");
+      }
+    }
+  };
+
+  const handleCloseMenu = () => {
+    setFadeOut(true);
+    setTimeout(() => {
+      setMenu(false);
+      setFadeOut(false);
+      const body = document.querySelector("body") as HTMLElement;
+      if (body) {
+        body.classList.remove("no-scroll");
+      }
+    }, 500);
+  };
+
   return (
     <div className={styles.navwrap}>
       <Link href="/">
@@ -60,8 +88,11 @@ const Navbar = () => {
       </Link>
 
       {menu ? (
-        <div className={styles.overlay} onClick={() => setMenu(!menu)}>
-            <ul>
+        // <div className={styles.overlay} onClick={() => setMenu(!menu)}>
+        <div
+          className={`${styles.overlay} ${fadeOut ? "fadeOut" : ""}`}
+          onClick={handleCloseMenu}
+        >
           {NAV_LINKS.map((eachlink) => (
             <li key={eachlink.key}>
               {/* <Link
@@ -77,14 +108,15 @@ const Navbar = () => {
               <Link
                 href={eachlink.href}
                 className={
-                  activeLink === eachlink.href ? styles.active : styles.mobilelist
+                  activeLink === eachlink.href
+                    ? styles.active
+                    : styles.mobilelist
                 }
               >
                 {eachlink.text}
               </Link>
             </li>
           ))}
-          </ul>
         </div>
       ) : (
         <ul className={styles.desktopmenu}>
@@ -103,20 +135,9 @@ const Navbar = () => {
         </ul>
       )}
 
-      {/* <div className={styles.search}>
-    <input type="search" className={styles.input} placeholder="Search Anything" />
-    <Image
-        src="/search.png"
-        width={19}
-        height={4}
-        alt="Search icon"
-        />
-    </div> */}
-
-      <div className={styles.hamburger} onClick={() => setMenu(!menu)}>
+      <div className={styles.hamburger} onClick={handleMenuToggle}>
         {menu ? (
-          <MdClose size ={25}
-          style={{color: "rgb(11, 190, 23)"}}/>
+          <MdClose size={25} style={{ color: "rgb(11, 190, 23)" }} />
         ) : (
           <Image
             src="/icon-hamburger.svg"
@@ -131,3 +152,14 @@ const Navbar = () => {
 };
 
 export default Navbar;
+{
+  /* <div className={styles.search}>
+    <input type="search" className={styles.input} placeholder="Search Anything" />
+    <Image
+        src="/search.png"
+        width={19}
+        height={4}
+        alt="Search icon"
+        />
+    </div> */
+}
