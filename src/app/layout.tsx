@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
      
-     <body className={`${opensans.className} ${josesans.className}`}>
+     <body className={josesans.className}>
       <Navbar/> 
       <main className='relative overflow-hidden'>
       {children}

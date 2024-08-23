@@ -1,6 +1,6 @@
 .Team {
   padding-top: 70px;
-  padding-inline: 50px;
+  padding-inline: 30px;
   background-color: rgb(244, 254, 245);
   h2 {
     font-size: 3rem;
@@ -76,8 +76,14 @@
 
 @media (min-width: 48.25rem) {
   .Team {
+    padding-inline: 50px;
     .memberpic {
-      grid-template-columns: 1fr 1fr 1fr;
+      // grid-template-columns: 1fr 1fr 1fr;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      row-gap: 6rem;
     }
 
     .description {
@@ -89,6 +95,7 @@
   .Team {
     .memberpic {
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      row-gap: 6rem;
     }
     .description {
       padding: 80px;

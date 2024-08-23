@@ -33,7 +33,6 @@
       // font-family: 'Open Sans', sans-serif;
     }
     & > *:hover {
-      
       color: rgb(11, 190, 23);
     }
     .active {
@@ -94,7 +93,7 @@
 
 @media (min-width: 53.75rem) {
   .navwrap {
-    padding-inline: 100px;
+    padding-inline: 50px;
     .desktopmenu {
       display: block;
       display: flex;
@@ -117,7 +116,7 @@
 
         &:hover {
           color: rgb(11, 190, 23);
-          font-weight: 600;
+          // font-weight: 600;
         }
       }
     }

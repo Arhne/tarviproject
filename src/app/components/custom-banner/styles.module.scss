@@ -5,7 +5,7 @@
   
   
     .banner {
-      padding-inline: 50px;
+      padding-inline: 30px;
       display: grid;
       gap: 2rem;
   
@@ -43,7 +43,7 @@
     .bannerbg {
      
       .banner {
-       
+        padding-inline: 50px;
         display: grid;
         grid-template-columns: 1fr 1fr;
         .imgwrap {

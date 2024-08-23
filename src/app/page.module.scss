@@ -42,7 +42,8 @@
 }
 
 .objectivesection {
-  margin: 50px;
+  margin-block: 50px;
+  padding-inline: 30px;
   // margin-block: 50px;
   & > h1 {
     text-align: center;
@@ -84,6 +85,7 @@
 }
 @media (min-width: 50rem) {
   .objectivesection {
+    padding-inline: 50px;
     .objectiv {
       display: grid;
       grid-template-columns: auto auto;
@@ -107,6 +109,7 @@
 
   }
   .motto {
+    padding-inline: 50px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     text-align: left;

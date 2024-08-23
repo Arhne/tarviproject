@@ -38,8 +38,8 @@ const Footer = () => {
         <p className={styles.flex}>
           <Image
             src="/logo-brand.png"
-            width={80}
-            height={50}
+            width={40}
+            height={40}
             className={styles.doodle}
             alt="advert"
           />
