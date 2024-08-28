@@ -30,6 +30,11 @@ const Navbar = () => {
       text: "Our Team",
     },
     {
+      href: "/events",
+      key: "Events",
+      text: "Events",
+    },
+    {
       href: "/contact",
       key: "Contact Us",
       text: "Contact Us",
