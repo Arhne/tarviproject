@@ -100,16 +100,7 @@ const Navbar = () => {
         >
           {NAV_LINKS.map((eachlink) => (
             <li key={eachlink.key}>
-              {/* <Link
-       href={eachlink.href}
-       className={
-         pathname === eachlink.href
-           ? styles.active
-           : styles.menulist
-       }
-     >
-       {eachlink.text}
-     </Link> */}
+             
               <Link
                 href={eachlink.href}
                 className={
