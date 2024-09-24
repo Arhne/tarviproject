@@ -1,0 +1,42 @@
+.newsContainer {
+  padding-top: 100px;
+  padding-inline: 30px;
+
+  h1{
+    margin-bottom: 20px;
+  }
+  .newsItem {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+h2{
+  font-size: 1.5rem;
+}
+
+.linkItem{
+  display: flex;
+}
+    button {
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      padding: 7px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0c5db7;
+    }
+  }
+  }
+  @media (min-width: 48.25rem) {
+    .newsContainer {
+      
+      .newsItem {
+       
+    h2{
+      font-size: 1.5rem;
+    }
+  }}
+  } 
+  

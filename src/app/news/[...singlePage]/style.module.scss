@@ -1,0 +1,34 @@
+.news-container {
+    padding: 20px;
+  }
+  
+  .news-item {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+  }
+  
+  .video-wrapper {
+    margin-top: 20px;
+  }
+  
+  .news-item button {
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .news-item button:hover {
+    background-color: #0c5db7;
+  }
+  .news-item a {
+    color: #1a73e8;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .news-item a:hover {
+    color: #0c5db7;
+  }

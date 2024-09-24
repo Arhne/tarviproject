@@ -2,9 +2,15 @@ import Image from "next/image";
 import styles from "./page.module.scss";
 import Card from "./components/custom-card/index";
 import { objectives } from "./components/constants";
-import visionImg from "./components/assests/03.webp";
-import missionImg from "./components/assests/02.webp";
+import visionImg from "./components/assests/hapelmeeting.jpeg";
+import missionImg from "./components/assests/boardroom.jpg";
 import { Banners } from "./components/custom-banner/index";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "African Rebirth",
+  description: " ...Rebuilding and Rebranding the African Continent",
+};
 
 export default function Home() {
   return (
@@ -18,19 +24,26 @@ export default function Home() {
               INTERNATIONAL{" "}
             </h1>
             <p>...Rebuilding and Rebranding the African Continent</p>
-
-            <p>Building Trade, Finance and Investment Bridges across Africa</p>
           </div>
         </div>
       </div>
 
+      <div className={styles.logo_display}>
+        <Image
+         src="/logo-brand.png"
+         width={370}
+         height={140}
+         className={styles.brandmargin}
+         alt="advert"
+        />
+        <p>Building Trade, Finance and Investment Bridges across Africa</p>
+      </div>
       <h1 className={styles.brand_desc}>
         Who We <span className="gradcolor">Are</span>
-
       </h1>
       <div className={styles.motto} id="about">
         <p>
-          The African Rebirth Vision International (TARVi) supports constructive
+          The African Rebirth Vision International (TARV) supports constructive
           public and private partnerships, representing local and foreign
           investments across Africa. Our core objective is to safeguard and
           advance business and community interests by engaging with government
@@ -84,7 +97,6 @@ export default function Home() {
       </section>
 
       <section className={styles.history}>
-       
         <div className={styles.brand_history}>
           <h1>
             Our <span className="gradcolor">History</span>
@@ -104,13 +116,14 @@ export default function Home() {
           </p>
           <p>
             Our mission revolves around fostering constructive public and
-            private partnerships, leveraging resources for Africa&apos;s development,
-            and promoting favorable investment climates.
+            private partnerships, leveraging resources for Africa&apos;s
+            development, and promoting favorable investment climates.
           </p>
 
           <p>
-            Through strategic media partnerships, we aim to enhance Africa&apos;s
-            appeal, encourage investment, and drive sustained economic growth.
+            Through strategic media partnerships, we aim to enhance
+            Africa&apos;s appeal, encourage investment, and drive sustained
+            economic growth.
           </p>
         </div>
 
@@ -122,7 +135,6 @@ export default function Home() {
           alt="advert"
         />
       </section>
-
     </>
   );
 }

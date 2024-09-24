@@ -30,15 +30,15 @@ export const Banners = ({
   return (
     <div className={`${styles.bannerbg} ${style}`}>
       <div className={styles.banner}>
-        <p className={styles.imgwrap}>
+        <div className={styles.imgwrap}>
           <Image
             src={picture}
             alt="a banner pic"
-            width={350}
-            height={200}
+            width={450}
+            height={300}
             className={styles.img}
           />
-        </p>
+        </div>
 
         <div className={styles.card}>
           <p className={styles.title}>
@@ -55,15 +55,15 @@ export const Banners = ({
           <p className={styles.content}>{secondcontent}</p>
         </div>
 
-        <p className={styles.imgwrap}>
+        <div className={styles.imgwrap}>
           <Image
             src={picturetwo}
             alt="a banner pic"
-            width={350}
-            height={200}
+            width={450}
+            height={300}
             className={styles.img}
           />
-        </p>
+        </div>
       </div>
     </div>
   );

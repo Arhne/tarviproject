@@ -1,8 +1,12 @@
 import React from 'react'
-
+import styles from '../gallery/style.module.scss'
 const events = () => {
   return (
-    <div>Nothing in events yet</div>
+    <div className={styles.gallery}>
+      <p>
+      Nothing in Events yet
+      </p>
+      </div>
   )
 }
 

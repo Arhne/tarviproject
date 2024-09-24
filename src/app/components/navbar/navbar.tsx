@@ -5,38 +5,56 @@ import styles from "./style.module.scss";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
-// import { document } from "postcss";
+import { MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+
 
 const Navbar = () => {
   const NAV_LINKS = [
     {
       href: "/",
-      key: "Home",
+      key: "home",
       text: "Home",
     },
     {
       href: "/#about",
-      key: "About Us",
+      key: "about us",
       text: "About Us",
     },
     {
       href: "/services",
-      key: "Our Services (TARVI)",
-      text: "Our Services (TARVI)",
+      key: "our services",
+      text: "Our Services (TARV)",
     },
     {
-      href: "/team",
-      key: "Our Team",
-      text: "Our Team",
-    },
-    {
-      href: "/events",
-      key: "Events",
-      text: "Events",
+      key: "dropdown",
+      text: "Resources",
+      children: [
+        {
+          href: "/team",
+          key: "our team",
+          text: "Our Team",
+        },
+        {
+          href: "/events",
+          key: "events",
+          text: "Events",
+        },
+        {
+          href: "/gallery",
+          key: "gallery",
+          text: "Gallery",
+        },
+        {
+          href: "/news",
+          key: "news",
+          text: "News",
+        },
+      ],
     },
     {
       href: "/contact",
-      key: "Contact Us",
+      key: "contact",
       text: "Contact Us",
     },
   ];
@@ -44,6 +62,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const [activeLink, setActiveLink] = useState<string>("");
   const [menu, setMenu] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   const [fadeOut, setFadeOut] = useState<boolean>(false);
 
   useEffect(() => {
@@ -54,7 +73,7 @@ const Navbar = () => {
 
     // Only update activeLink if it has actually changed
     if (matchedLink && activeLink !== matchedLink.href) {
-      setActiveLink(matchedLink.href);
+      setActiveLink(matchedLink.href || "");
     } else if (!matchedLink && activeLink !== pathname) {
       setActiveLink(pathname);
     }
@@ -86,6 +105,10 @@ const Navbar = () => {
     }, 500);
   };
 
+  const handleDropdownToggle = () => {
+    setDropdown(!dropdown);
+  };
+
   return (
     <div className={styles.navwrap}>
       <Link href="/">
@@ -93,41 +116,102 @@ const Navbar = () => {
       </Link>
 
       {menu ? (
-        // <div className={styles.overlay} onClick={() => setMenu(!menu)}>
-        <div
-          className={`${styles.overlay} ${fadeOut ? "fadeOut" : ""}`}
-          onClick={handleCloseMenu}
-        >
-          {NAV_LINKS.map((eachlink) => (
-            <li key={eachlink.key}>
-             
-              <Link
-                href={eachlink.href}
-                className={
-                  activeLink === eachlink.href
-                    ? styles.active
-                    : styles.mobilelist
-                }
-              >
-                {eachlink.text}
-              </Link>
-            </li>
-          ))}
+        <div className={`${styles.overlay} ${fadeOut ? "fadeOut" : ""}`}>
+          {NAV_LINKS.map((eachlink) =>
+            eachlink.children ? (
+              <div key={eachlink.key}>
+                <button
+                  onClick={handleDropdownToggle}
+                  className={styles.dropdownToggle}
+                >
+                  {eachlink.text}
+                  {dropdown ? <MdOutlineKeyboardArrowDown /> : <MdOutlineKeyboardArrowRight />}
+                </button>
+                {dropdown && (
+                  <ul className={styles.dropdownMenu}>
+                    {eachlink.children.map((child) => (
+                      <li key={child.key}>
+                        <Link
+                          href={child.href}
+                          className={
+                            activeLink === child.href
+                              ? styles.active
+                              : styles.mobilelist
+                          }
+                          onClick={handleCloseMenu}
+                        >
+                          {child.text}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ) : (
+              <li key={eachlink.key}>
+                <Link
+                onClick={handleCloseMenu}
+                  href={eachlink.href}
+                  className={
+                    activeLink === eachlink.href
+                      ? styles.active
+                      : styles.mobilelist
+                  }
+                >
+                  {eachlink.text}
+                </Link>
+              </li>
+            )
+          )}
         </div>
       ) : (
         <ul className={styles.desktopmenu}>
-          {NAV_LINKS.map((eachlink) => (
-            <li key={eachlink.key}>
-              <Link
-                href={eachlink.href}
-                className={
-                  activeLink === eachlink.href ? styles.active : styles.menulist
-                }
+          {NAV_LINKS.map((eachlink) =>
+            eachlink.children ? (
+              <li
+                key={eachlink.key}
+                className={styles.dropdownParent}
+                onMouseEnter={handleDropdownToggle}
+                onMouseLeave={handleDropdownToggle}
               >
-                {eachlink.text}
-              </Link>
-            </li>
-          ))}
+                <button className={styles.dropdownToggle}>
+                  {eachlink.text}
+                  {dropdown ? <MdOutlineKeyboardArrowDown /> : <MdOutlineKeyboardArrowRight />}
+                </button>
+                {dropdown && (
+                  <ul className={styles.dropdownMenu}>
+                    {eachlink.children.map((child) => (
+                      <li key={child.key}>
+                        <Link
+                          href={child.href}
+                          className={
+                            activeLink === child.href
+                              ? styles.active
+                              : styles.menulist
+                          }
+                        >
+                          {child.text}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ) : (
+              <li key={eachlink.key}>
+                <Link
+                  href={eachlink.href}
+                  className={
+                    activeLink === eachlink.href
+                      ? styles.active
+                      : styles.menulist
+                  }
+                >
+                  {eachlink.text}
+                </Link>
+              </li>
+            )
+          )}
         </ul>
       )}
 
@@ -146,16 +230,4 @@ const Navbar = () => {
     </div>
   );
 };
-
 export default Navbar;
-{
-  /* <div className={styles.search}>
-    <input type="search" className={styles.input} placeholder="Search Anything" />
-    <Image
-        src="/search.png"
-        width={19}
-        height={4}
-        alt="Search icon"
-        />
-    </div> */
-}

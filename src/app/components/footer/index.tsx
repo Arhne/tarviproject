@@ -17,8 +17,8 @@ const Footer = () => {
     },
     {
       href: "/services",
-      key: "Our Services (TARVI)",
-      text: "Our Services (TARVI)",
+      key: "Our Services (TARV)",
+      text: "Our Services (TARV)",
     },
     {
       href: "/team",
@@ -43,13 +43,18 @@ const Footer = () => {
             className={styles.doodle}
             alt="advert"
           />
-          TARVi
+          TARV
         </p>
         <p className={styles.office}>
-          TARVi OFFICE ADDRESSES phone numbers and email
+          TARV OFFICE ADDRESSES phone numbers and email
         </p>
+
         <p>
-          (South/West )17 Amadu Tijani Str,, Off Sanusi Fafunwa, V.I, Lagos
+          (Johannesburg) 36 Fort Street, Birmam, Johanesburg, 2196. South Africa  +27 735658420
+        </p>
+        
+        <p>
+          (South/West) 17 Amadu Tijani Str,, Off Sanusi Fafunwa, V.I, Lagos
           Nigeria (+234) 0808 770 0000
         </p>
         <p>
