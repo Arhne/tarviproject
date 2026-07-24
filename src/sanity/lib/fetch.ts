@@ -29,6 +29,7 @@ export type NewsArticle = NewsListItem & {
   body?: PortableTextBlock[];
   conclusion?: string;
   videoUrl?: string;
+  images?: string[];
 };
 
 export type EventItem = {
@@ -40,6 +41,7 @@ export type EventItem = {
   location?: string;
   summary: string;
   coverImage?: SanityImage;
+  coverSrc?: string;
   isFeatured?: boolean;
 };
 
@@ -60,6 +62,7 @@ type LegacyNews = {
   conclusion?: string;
   videoUrl?: string;
   externalLink?: string;
+  images?: string[];
 };
 
 async function readLegacyNews(): Promise<LegacyNews[]> {
@@ -94,6 +97,7 @@ async function fetchLegacyArticle(slug: string): Promise<NewsArticle | null> {
     conclusion: item.conclusion,
     videoUrl: item.videoUrl,
     externalLink: item.externalLink,
+    images: item.images,
     body: (item.mainContent || []).map((section, index) => ({
       _type: "block",
       _key: `legacy-${index}`,

@@ -104,6 +104,18 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--brass) !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.75rem;
+  align-items: center;
+}
+
+.status {
+  display: inline-flex;
+  padding: 0.2rem 0.45rem;
+  background: var(--stone);
+  color: var(--forest);
+  letter-spacing: 0.08em;
 }
 
 @media (min-width: 48rem) {

@@ -83,6 +83,33 @@ export default function Home() {
         </div>
       </section>
 
+      <section className={styles.featureVideo} aria-label="TARV highlight videos">
+        <div className={styles.featureVideoInner}>
+          <div className={styles.featureVideoCopy}>
+            <p className={styles.kicker}>In focus</p>
+            <h2>See TARV in motion</h2>
+            <p>
+              A closer look at how we convene partners, advance investment
+              conversations, and champion Africa&apos;s economic rebirth through Hapel Group.
+            </p>
+          </div>
+          <div className={styles.featureVideoGrid}>
+            <div className={styles.featureVideoFrame}>
+              <video controls preload="metadata" playsInline>
+                <source src="/video/tarvi_3.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div className={styles.featureVideoFrame}>
+              <video controls preload="metadata" playsInline>
+                <source src="/video/tarvi_4.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Banners
         title="Our shared"
         picture={visionImg}
@@ -94,6 +121,26 @@ export default function Home() {
         contenttwo={`Our mission is to champion Africa's development and economic growth through a bottom-up approach, guiding governments to adopt inclusive policies and initiatives.`}
         secondcontent={`We strive to attract foreign partnerships that align with our values, ensuring that Africa's resources are harnessed responsibly and utilized to uplift African communities, foster entrepreneurship, and drive sustainable development.`}
       />
+
+      <section className={styles.profileBand}>
+        <div className={styles.profileBandInner}>
+          <div>
+            <p className={styles.kicker}>Company profile</p>
+            <h2>Read the full TARV brief</h2>
+            <p>
+              Download our profile for a complete overview of who we are — vision,
+              mission, leadership, and how we partner across Africa.
+            </p>
+          </div>
+          <a
+            href="/docs/tarv-company-profile.pdf"
+            className={styles.profileCta}
+            download
+          >
+            Download PDF
+          </a>
+        </div>
+      </section>
 
       <section className={styles.objectivesection}>
         <div className={styles.objectiveHead}>

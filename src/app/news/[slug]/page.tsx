@@ -93,6 +93,21 @@ export default async function NewsDetailPage({ params }: PageProps) {
         </div>
       )}
 
+      {newsItem.images && newsItem.images.length > 0 && (
+        <div className={styles.imageGrid}>
+          {newsItem.images.map((src, index) => (
+            <div key={src} className={styles.gridImage}>
+              <Image
+                src={src}
+                alt={`${newsItem.title} — image ${index + 1}`}
+                width={900}
+                height={700}
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
       {newsItem.externalLink && (
         <p>
           For more detailed information,{" "}

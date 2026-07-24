@@ -22,10 +22,10 @@
 }
 
 .lead {
-  max-width: 36rem;
+  max-width: 38rem;
 }
 
-.memberpic {
+.serviceGrid {
   display: grid;
   gap: 1.5rem;
   padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
@@ -33,30 +33,52 @@
   margin-inline: auto;
 }
 
-.imgwrap {
-  position: relative;
+.serviceCard {
+  background: var(--white);
+  border: 1px solid var(--stone);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.media {
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
 
   .img {
     width: 100%;
-    height: clamp(16rem, 40vw, 22rem);
+    height: 100%;
     object-fit: cover;
     transition: transform 0.7s var(--ease-out);
   }
+}
 
-  figcaption {
-    margin-top: 0.75rem;
-    font-family: var(--font-body), system-ui, sans-serif;
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
+.serviceCard:hover .img {
+  transform: scale(1.04);
+}
+
+.copy {
+  padding: 1.35rem 1.35rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+
+  h2 {
+    font-size: 1.3rem;
+    line-height: 1.25;
   }
 
-  &:hover .img {
-    transform: scale(1.04);
+  p {
+    font-size: 0.98rem;
   }
+}
+
+.index {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  color: var(--brass) !important;
 }
 
 .ctaBand {
@@ -94,13 +116,13 @@
 }
 
 @media (min-width: 48rem) {
-  .memberpic {
+  .serviceGrid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
 @media (min-width: 68rem) {
-  .memberpic {
+  .serviceGrid {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }

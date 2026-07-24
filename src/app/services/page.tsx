@@ -1,15 +1,8 @@
-"use client";
-
 import React from "react";
 import { services } from ".";
 import Image from "next/image";
 import style from "./styles.module.scss";
 import Link from "next/link";
-
-interface ServiceMember {
-  key: number;
-  pic: string;
-}
 
 const Services = () => {
   return (
@@ -18,23 +11,32 @@ const Services = () => {
         <p className={style.kicker}>What we offer</p>
         <h1>Our services</h1>
         <p className={style.lead}>
-          From investment facilitation to strategic partnerships, TARV builds
-          the bridges that move capital, policy, and opportunity across Africa.
+          TARV builds trade, finance, and investment bridges across Africa —
+          from policy advocacy and partnership structuring to infrastructure
+          delivery and media-led rebranding.
         </p>
       </header>
 
-      <div className={style.memberpic}>
-        {services.map((member: ServiceMember, index) => (
-          <figure key={member.key} className={style.imgwrap}>
-            <Image
-              src={member.pic}
-              alt={`TARV service ${index + 1}`}
-              width={640}
-              height={480}
-              className={style.img}
-            />
-            <figcaption>Service focus {String(index + 1).padStart(2, "0")}</figcaption>
-          </figure>
+      <div className={style.serviceGrid}>
+        {services.map((service) => (
+          <article key={service.key} className={style.serviceCard}>
+            <div className={style.media}>
+              <Image
+                src={service.pic}
+                alt={service.title}
+                width={800}
+                height={560}
+                className={style.img}
+              />
+            </div>
+            <div className={style.copy}>
+              <p className={style.index}>
+                {String(service.key).padStart(2, "0")}
+              </p>
+              <h2>{service.title}</h2>
+              <p>{service.summary}</p>
+            </div>
+          </article>
         ))}
       </div>
 

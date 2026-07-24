@@ -73,10 +73,17 @@
   background: var(--white);
   border: 1px solid var(--stone);
 
-  img {
+  .image,
+  .video {
     width: 100%;
     height: auto;
     display: block;
+  }
+
+  .video {
+    background: var(--forest-deep);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
   }
 
   figcaption {

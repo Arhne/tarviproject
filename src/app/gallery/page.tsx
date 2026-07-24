@@ -1,14 +1,48 @@
 import Image from "next/image";
-import Link from "next/link";
 import { getGallery } from "@/sanity/lib/fetch";
 import { urlForImage } from "@/sanity/lib/image";
 import { isSanityConfigured } from "@/sanity/env";
+import { localGalleryItems } from "./data";
 import styles from "./style.module.scss";
 
 export const revalidate = 60;
 
+type GalleryCard = {
+  id: string;
+  title: string;
+  caption?: string;
+  type: "image" | "video";
+  src: string;
+  order: number;
+};
+
 export default async function GalleryPage() {
-  const items = await getGallery();
+  const sanityItems = await getGallery();
+
+  const remoteCards: GalleryCard[] = isSanityConfigured
+    ? sanityItems
+        .filter((item) => Boolean(item.image))
+        .map((item, index) => ({
+          id: item._id,
+          title: item.title,
+          caption: item.caption,
+          type: "image" as const,
+          src: urlForImage(item.image).width(1200).height(1400).url(),
+          order: 1000 + index,
+        }))
+    : [];
+
+  const cards: GalleryCard[] = [
+    ...localGalleryItems.map((item) => ({
+      id: item.id,
+      title: item.title,
+      caption: item.caption,
+      type: item.type,
+      src: item.src,
+      order: item.order,
+    })),
+    ...remoteCards,
+  ].sort((a, b) => a.order - b.order);
 
   return (
     <div className={styles.page}>
@@ -20,38 +54,35 @@ export default async function GalleryPage() {
         </p>
       </header>
 
-      {items.length === 0 ? (
-        <div className={styles.emptyState}>
-          <p className={styles.emptyLabel}>Coming soon</p>
-          <p>
-            {isSanityConfigured
-              ? "Upload gallery images in Sanity Studio and they will appear here."
-              : "Connect Sanity to manage gallery images from /studio."}
-          </p>
-          <Link href="/contact" className={styles.cta}>
-            Contact us
-          </Link>
-        </div>
-      ) : (
-        <div className={styles.masonry}>
-          {items.map((item) => (
-            <figure key={item._id} className={styles.item}>
-              {item.image && isSanityConfigured && (
-                <Image
-                  src={urlForImage(item.image).width(1000).height(1200).url()}
-                  alt={item.title}
-                  width={1000}
-                  height={1200}
-                />
-              )}
-              <figcaption>
-                <strong>{item.title}</strong>
-                {item.caption && <span>{item.caption}</span>}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      )}
+      <div className={styles.masonry}>
+        {cards.map((item) => (
+          <figure key={item.id} className={styles.item}>
+            {item.type === "video" ? (
+              <video
+                className={styles.video}
+                controls
+                preload="metadata"
+                playsInline
+              >
+                <source src={item.src} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            ) : (
+              <Image
+                src={item.src}
+                alt={item.title}
+                width={1000}
+                height={1200}
+                className={styles.image}
+              />
+            )}
+            <figcaption>
+              <strong>{item.title}</strong>
+              {item.caption && <span>{item.caption}</span>}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
     </div>
   );
 }
