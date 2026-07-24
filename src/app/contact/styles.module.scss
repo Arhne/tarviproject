@@ -1,58 +1,77 @@
-.contact{
-    padding-block: 150px 100px;
-    display: flex;
-    margin-inline: auto;
-    flex-direction: column;
-    padding-inline: 50px;
-    text-align: center;
-    &>*{
-        margin-bottom: 20px;
-    }
-    h1{
-        margin-bottom: 15px;
-    }
-    .btn{
-        outline: 1px solid rgb(11, 190, 23);
-        border-radius: 100vw;
-        background-color: transparent;
-        width: 300px;
-        padding: 10px;
-        font-size: 1.2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 5px;
-        font-weight: 500;
-        margin-bottom: 50px;
-        margin-inline: auto;
-        &:hover{
-            border: none;
-            color: #fff;
-           background-color: rgba(11, 190, 23, 0.8);
-        }
-    }
-    .sendbtn{
-        
-        border-radius: 100vw;
-        background-color: rgb(11, 190, 23);
-        width: 150px;
-        padding: 10px;
-        font-size: 1.2rem;
-        font-weight: 500;
-        margin-bottom: 50px;
-        color: #fff;
-        margin-inline: auto;
-        &:hover{
-            border: none;
-            color: #fff;
-           background-color: rgba(11, 190, 23, 0.7);
-        }
-    }
+.contact {
+  padding-top: var(--nav-h);
+  padding-bottom: 5rem;
+  background: var(--paper);
+  max-width: 40rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
 }
 
-@media (min-width: 53.75rem) {
-    .contact{
-        width: 50%;
+.pageHead {
+  padding-top: clamp(3rem, 7vw, 5rem);
+  margin-bottom: 2rem;
 
-    }
+  h1 {
+    margin-bottom: 1rem;
+  }
+}
+
+.kicker {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--leaf) !important;
+  margin-bottom: 0.75rem;
+}
+
+.lead {
+  max-width: 34rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 22rem;
+  padding: 0.9rem 1.2rem;
+  border: 1px solid var(--leaf);
+  background: transparent;
+  color: var(--forest);
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 2px;
+  margin-bottom: 2.5rem;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background: var(--forest);
+    color: var(--white);
+    border-color: var(--forest);
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.sendbtn {
+  align-self: flex-start;
+  border: none;
+  border-radius: 2px;
+  background: var(--forest);
+  padding: 0.95rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: var(--leaf);
+  }
 }

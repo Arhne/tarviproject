@@ -1,45 +1,106 @@
 .service {
-    padding-top: 70px;
-      padding-inline: 50px;
-      background-color: rgb(244, 254, 245);
-      h2 {
-        font-size: 3rem;
-        text-align: center;
-        padding-block: 80px;
-      }
-      .memberpic {
-        
-        box-sizing: border-box;
-        display: grid;
-        gap: 3rem;
-        justify-items: center;
-        align-items: center;
-        padding-bottom: 100px;
-        .imgwrap{
-          position: relative;
-       
-        .img {
-          object-fit: cover;
-          width: 300px;
-          height: 300px;
-          border-radius: 10px;
-          padding: 4px;
-          outline: 5px solid rgb(11, 190, 23);
-        }
-    }}}
-    
-    @media (min-width: 48.25rem) {
-      .Team {
-        .memberpic {
-          grid-template-columns: 1fr 1fr 1fr;
-        }
-      }
-    }
-    @media (min-width: 68.25rem) {
-      .Team {
-        .memberpic {
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-        }
-      }
-    }
-    
+  padding-top: var(--nav-h);
+  background: var(--paper);
+}
+
+.pageHead {
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.25rem, 4vw, 3rem) 2.5rem;
+  max-width: 42rem;
+
+  h1 {
+    margin-bottom: 1rem;
+  }
+}
+
+.kicker {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--leaf) !important;
+  margin-bottom: 0.75rem;
+}
+
+.lead {
+  max-width: 36rem;
+}
+
+.memberpic {
+  display: grid;
+  gap: 1.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 3rem) clamp(3rem, 6vw, 5rem);
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.imgwrap {
+  position: relative;
+  overflow: hidden;
+
+  .img {
+    width: 100%;
+    height: clamp(16rem, 40vw, 22rem);
+    object-fit: cover;
+    transition: transform 0.7s var(--ease-out);
+  }
+
+  figcaption {
+    margin-top: 0.75rem;
+    font-family: var(--font-body), system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  &:hover .img {
+    transform: scale(1.04);
+  }
+}
+
+.ctaBand {
+  background: var(--forest);
+  color: var(--white);
+  padding: clamp(3rem, 6vw, 4.5rem) clamp(1.25rem, 4vw, 3rem);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  h2 {
+    color: var(--white);
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 28rem;
+  }
+}
+
+.cta {
+  display: inline-flex;
+  margin-top: 0.5rem;
+  padding: 0.9rem 1.4rem;
+  background: var(--brass);
+  color: var(--forest-deep);
+  font-weight: 600;
+  border-radius: 2px;
+
+  &:hover {
+    background: var(--brass-soft);
+  }
+}
+
+@media (min-width: 48rem) {
+  .memberpic {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 68rem) {
+  .memberpic {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

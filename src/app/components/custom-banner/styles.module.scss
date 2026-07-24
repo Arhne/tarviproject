@@ -1,61 +1,67 @@
 .bannerbg {
-    background-color: rgb(244, 254, 245);
-    margin-block: 80px;
-    padding-block: 50px;
-  
-  
-    .banner {
-      padding-inline: 30px;
-      display: grid;
-      gap: 2rem;
-  
-      .imgwrap {
-        margin-bottom: 80px;
-       
-        img {
-          // border-radius: 100vw;
-          outline: 2px solid rgb(11, 190, 23);
-          padding: 5px;
-          margin: auto;
-        }
-      }
-      .card {
-        display: flex;
-        flex-direction: column;
-        align-items: left;
-        justify-content: center;
-        margin-bottom: 100px;
-      
-      .title {
-        font-size: 1.9rem;
-        font-weight: 700;
-        line-height: 40px;
-        margin-bottom: 17px;
-        // text-align: left;
-      }
-      .content {
-        max-width: 800px;
-        font-size: 1.1rem;
-      }
-    }}
-  }
-  @media (min-width: 50rem) {
-    .bannerbg {
-     
-      .banner {
-        padding-inline: 50px;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        .imgwrap {
-          margin-bottom: 150px;
-          align-self: center;
-         
-        }
-        .card {
-          margin-bottom: 150px;
-        }
-        
-      }
+  background: linear-gradient(180deg, var(--paper) 0%, var(--stone) 100%);
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+}
+
+.banner {
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+  display: grid;
+  gap: 2.5rem;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.imgwrap {
+  overflow: hidden;
+
+  .img {
+    width: 100%;
+    height: clamp(16rem, 40vw, 22rem);
+    object-fit: cover;
   }
 }
-  
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.kicker {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--leaf) !important;
+}
+
+.title {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.content {
+  max-width: 36rem;
+}
+
+@media (min-width: 56rem) {
+  .banner {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 4rem;
+    align-items: center;
+  }
+
+  .imgwrap .img {
+    height: 22rem;
+  }
+
+  .copyAlt {
+    order: 3;
+  }
+
+  .imgwrap:last-child {
+    order: 4;
+  }
+}

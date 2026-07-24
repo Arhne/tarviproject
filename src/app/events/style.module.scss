@@ -59,54 +59,55 @@
   }
 }
 
-.masonry {
+.grid {
   max-width: 72rem;
   margin-inline: auto;
   padding-inline: clamp(1.25rem, 4vw, 3rem);
-  columns: 1;
-  column-gap: 1.25rem;
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
 }
 
-.item {
-  break-inside: avoid;
-  margin-bottom: 1.25rem;
+.card {
   background: var(--white);
   border: 1px solid var(--stone);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.media {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
 
   img {
     width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  figcaption {
-    padding: 0.9rem 1rem 1.1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-
-    strong {
-      font-family: var(--font-display), system-ui, sans-serif;
-      font-size: 1rem;
-      color: var(--ink);
-    }
-
-    span {
-      font-size: 0.9rem;
-      color: var(--ink-muted);
-      line-height: 1.5;
-    }
+    height: 100%;
+    object-fit: cover;
   }
 }
 
-@media (min-width: 40rem) {
-  .masonry {
-    columns: 2;
+.content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+
+  h2 {
+    font-size: 1.35rem;
   }
 }
 
-@media (min-width: 68rem) {
-  .masonry {
-    columns: 3;
+.meta {
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brass) !important;
+}
+
+@media (min-width: 48rem) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
   }
 }

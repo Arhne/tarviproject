@@ -1,109 +1,127 @@
 .footer {
-  padding-top: 50px;
-  color: #a8a9a8;
-  background-color: rgb(42, 43, 42);
- 
-  .upperfooter {
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    text-align: center;
-    width: 100%;
-    padding-inline: 50px;
-  p{
-    padding-bottom: 15px;
-   }
+  background: var(--forest-deep);
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.upperfooter {
+  padding: 4rem clamp(1.25rem, 4vw, 3rem) 3rem;
+  display: grid;
+  gap: 3rem;
+}
+
+.brandBlock {
+  max-width: 28rem;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  color: var(--white);
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 1rem;
+}
+
+.doodle {
+  width: 3rem;
+  height: 3rem;
+  object-fit: contain;
+}
+
+.tagline {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.office {
+  color: var(--brass-soft);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.officeGrid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.officeItem {
+  p {
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    margin-bottom: 0.35rem;
   }
-  .flex {
-    display: flex;
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 45px;
-    align-items: center;
-   
-  }
-  .office {
-    color: #fff;
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-block: 30px;
-  }
-  .lowerfooter {
-    background-color: #191919;
-    padding-block: 50px 30px;
-    width: 100%;
-    text-align: center;
-    padding-inline: 50px;
-    & > * {
-      padding-bottom: 20px;
-    }
-    .desktopmenu {
-      display: flex;
-      gap: .3rem;
-      justify-content: center;
-      align-items: center;
-      
-      color: #fff;
-      .menulist {
-        border-right: 2px solid #fff;
-        padding-right: 20px;
-       
-        &:hover {
-          color: rgb(11, 190, 23);
-        }
-        &:last-child{
-            border-right: none;
-        }
-      }
-    }
-    p {
-      color: #a8a9a8;
+
+  a {
+    color: var(--white);
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    &:hover {
+      color: var(--brass-soft);
     }
   }
 }
-@media (min-width: 50rem) {
-//   .footer {
-//     padding-inline: 100px;
 
-//     .flex {
-//       display: flex;
-//       font-size: 2rem;
-//       font-weight: 600;
-//       line-height: 45px;
-//       align-items: center;
-//       color: black;
-//     }
-//     .office {
-//       color: #fff;
-//       font-size: 1.5rem;
-//       font-weight: 400;
-//       margin-block: 30px;
-//     }
-//     .lowerfooter {
-//       background-color: #191919;
-//       padding-block: 50px 30px;
-//       width: 100%;
-//       text-align: center;
-//       & > * {
-//         padding-bottom: 20px;
-//       }
-//       .desktopmenu {
-//         display: flex;
-//         gap: 1.75rem;
-//         justify-content: center;
-//         align-items: center;
-//         color: #fff;
-//         .menulist {
-//           border-right: 2px solid #fff;
-//           padding-right: 20px;
-//           &:hover {
-//             color: rgb(11, 190, 23);
-//           }
-//         }
-//       }
-//       p {
-//         color: #a8a9a8;
-//       }
-//     }
-//   }
+.region {
+  color: var(--white) !important;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 600;
+  font-size: 1rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.lowerfooter {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+
+  p {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.85rem;
+  }
+}
+
+.desktopmenu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+.menulist {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  &:hover {
+    color: var(--brass-soft);
+  }
+}
+
+@media (min-width: 56rem) {
+  .upperfooter {
+    grid-template-columns: 0.9fr 1.4fr;
+    align-items: start;
+  }
+
+  .officeGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem 2rem;
+  }
+
+  .lowerfooter {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }

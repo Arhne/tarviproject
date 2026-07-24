@@ -2,79 +2,143 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --forest: #0c3b2e;
+  --forest-deep: #06241c;
+  --leaf: #1f6b4c;
+  --brass: #b8953e;
+  --brass-soft: #d4bc7a;
+  --ink: #141816;
+  --ink-muted: #4f5852;
+  --stone: #dde3dc;
+  --paper: #f2f4f1;
+  --white: #ffffff;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --nav-h: 4.5rem;
+}
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
-
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-h1{
-  font-size: 2rem;
-  font-weight: 600;
-  line-height: 40px;
+
+html {
+  scroll-behavior: smooth;
 }
-h2{
-  font-size: 2rem;
-  font-weight: 500;
-  line-height: 40px;
+
+body {
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
 }
-p{
-  font-family: "Open Sans", sans-serif;
-  font-style: normal;
-  font-size: 1rem;
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--ink);
+}
+
+p,
+li,
+label,
+input,
+textarea,
+button {
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+p {
+  font-size: 1.05rem;
   font-weight: 400;
-  line-height: 23px;
-  
-}
-@media (min-width: 35.5rem){
-  h1{
-    font-size: 2.75rem;
-    font-weight: 900;
-    line-height: 50px;
-  }
-  h2{
-    font-size: 1.8rem;
-    font-weight: 600;
-    line-height: 50px;
-  }
-  p{
-    
-    font-size: 1.1rem;
-    font-weight: 400;
-    line-height: 25px;
-  }
-}
-@media (min-width: 68.25rem){
-  h1{
-    font-size: 3.75rem;
-    font-weight: 900;
-    line-height: 70px;
-  }
-  h2{
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 50px;
-  }
-  p{
-    
-    font-size: 1.3rem;
-    font-weight: 400;
-    line-height: 30px;
-  }
-}
-.gradcolor {
-  color: rgba(253, 198, 87, 1);
-  background: -webkit-linear-gradient(rgb(11, 190, 23), rgba(253, 198, 87, 1));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  line-height: 1.7;
+  color: var(--ink-muted);
 }
 
-.flip{
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
+h1 {
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
 }
 
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+}
 
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
 
+.accent {
+  color: var(--brass);
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+  position: fixed;
+  width: 100%;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.rise-in {
+  animation: rise-in 0.9s var(--ease-out) both;
+}
+
+.rise-in-delay {
+  animation: rise-in 0.9s var(--ease-out) 0.18s both;
+}
+
+.rise-in-delay-2 {
+  animation: rise-in 0.9s var(--ease-out) 0.32s both;
+}

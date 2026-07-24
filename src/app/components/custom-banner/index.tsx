@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./styles.module.scss";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
-interface bannerprop {
-  picture?: any;
-  picturetwo?: any;
+interface BannerProp {
+  picture?: StaticImageData | string;
+  picturetwo?: StaticImageData | string;
   gradtitletwo?: string;
   title?: string;
   titletwo: string;
@@ -26,43 +26,49 @@ export const Banners = ({
   gradtitle,
   gradtitletwo,
   style,
-}: bannerprop) => {
+}: BannerProp) => {
   return (
-    <div className={`${styles.bannerbg} ${style}`}>
+    <div className={`${styles.bannerbg} ${style || ""}`}>
       <div className={styles.banner}>
         <div className={styles.imgwrap}>
-          <Image
-            src={picture}
-            alt="a banner pic"
-            width={450}
-            height={300}
-            className={styles.img}
-          />
+          {picture && (
+            <Image
+              src={picture}
+              alt="Vision"
+              width={640}
+              height={480}
+              className={styles.img}
+            />
+          )}
         </div>
 
-        <div className={styles.card}>
-          <p className={styles.title}>
-            {title} <span className="gradcolor">{gradtitle}</span>
-          </p>
+        <div className={styles.copy}>
+          <p className={styles.kicker}>Purpose</p>
+          <h2 className={styles.title}>
+            {title} <span className="accent">{gradtitle}</span>
+          </h2>
           <p className={styles.content}>{content}</p>
         </div>
 
-        <div className={styles.card}>
-          <p className={styles.title}>
-            {titletwo} <span className="gradcolor">{gradtitletwo}</span>
-          </p>
+        <div className={`${styles.copy} ${styles.copyAlt}`}>
+          <p className={styles.kicker}>Direction</p>
+          <h2 className={styles.title}>
+            {titletwo} <span className="accent">{gradtitletwo}</span>
+          </h2>
           <p className={styles.content}>{contenttwo}</p>
-          <p className={styles.content}>{secondcontent}</p>
+          {secondcontent && <p className={styles.content}>{secondcontent}</p>}
         </div>
 
         <div className={styles.imgwrap}>
-          <Image
-            src={picturetwo}
-            alt="a banner pic"
-            width={450}
-            height={300}
-            className={styles.img}
-          />
+          {picturetwo && (
+            <Image
+              src={picturetwo}
+              alt="Mission"
+              width={640}
+              height={480}
+              className={styles.img}
+            />
+          )}
         </div>
       </div>
     </div>

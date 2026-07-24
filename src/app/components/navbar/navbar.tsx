@@ -1,233 +1,185 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./style.module.scss";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { MdClose } from "react-icons/md";
-import { MdOutlineKeyboardArrowDown } from "react-icons/md";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
+const NAV_LINKS = [
+  { href: "/", key: "home", text: "Home" },
+  { href: "/#about", key: "about us", text: "About" },
+  { href: "/services", key: "our services", text: "Services" },
+  {
+    key: "dropdown",
+    text: "Resources",
+    children: [
+      { href: "/team", key: "our team", text: "Our Team" },
+      { href: "/events", key: "events", text: "Events" },
+      { href: "/gallery", key: "gallery", text: "Gallery" },
+      { href: "/news", key: "news", text: "News" },
+    ],
+  },
+  { href: "/contact", key: "contact", text: "Contact" },
+];
 
 const Navbar = () => {
-  const NAV_LINKS = [
-    {
-      href: "/",
-      key: "home",
-      text: "Home",
-    },
-    {
-      href: "/#about",
-      key: "about us",
-      text: "About Us",
-    },
-    {
-      href: "/services",
-      key: "our services",
-      text: "Our Services (TARV)",
-    },
-    {
-      key: "dropdown",
-      text: "Resources",
-      children: [
-        {
-          href: "/team",
-          key: "our team",
-          text: "Our Team",
-        },
-        {
-          href: "/events",
-          key: "events",
-          text: "Events",
-        },
-        {
-          href: "/gallery",
-          key: "gallery",
-          text: "Gallery",
-        },
-        {
-          href: "/news",
-          key: "news",
-          text: "News",
-        },
-      ],
-    },
-    {
-      href: "/contact",
-      key: "contact",
-      text: "Contact Us",
-    },
-  ];
-
   const pathname = usePathname();
-  const [activeLink, setActiveLink] = useState<string>("");
+  const [activeLink, setActiveLink] = useState("");
   const [menu, setMenu] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-  const [fadeOut, setFadeOut] = useState<boolean>(false);
+  const [mobileDropdown, setMobileDropdown] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const currentHash = window.location.hash;
-    const currentFullPath = pathname + currentHash;
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
+  useEffect(() => {
+    const currentHash = typeof window !== "undefined" ? window.location.hash : "";
+    const currentFullPath = pathname + currentHash;
     const matchedLink = NAV_LINKS.find((link) => link.href === currentFullPath);
 
-    // Only update activeLink if it has actually changed
-    if (matchedLink && activeLink !== matchedLink.href) {
-      setActiveLink(matchedLink.href || "");
-    } else if (!matchedLink && activeLink !== pathname) {
+    if (matchedLink?.href) {
+      setActiveLink(matchedLink.href);
+    } else {
       setActiveLink(pathname);
     }
-  }, [pathname, activeLink]);
+  }, [pathname]);
 
-  const handleMenuToggle = () => {
-    setMenu(!menu);
-
-    const body = document.querySelector("body") as HTMLElement;
-
-    if (body) {
-      if (!menu) {
-        body.classList.add("no-scroll");
-      } else {
-        body.classList.remove("no-scroll");
-      }
+  useEffect(() => {
+    const body = document.body;
+    if (menu) {
+      body.classList.add("no-scroll");
+    } else {
+      body.classList.remove("no-scroll");
     }
+    return () => body.classList.remove("no-scroll");
+  }, [menu]);
+
+  const closeMenu = () => {
+    setMenu(false);
   };
 
-  const handleCloseMenu = () => {
-    setFadeOut(true);
-    setTimeout(() => {
-      setMenu(false);
-      setFadeOut(false);
-      const body = document.querySelector("body") as HTMLElement;
-      if (body) {
-        body.classList.remove("no-scroll");
-      }
-    }, 500);
-  };
-
-  const handleDropdownToggle = () => {
-    setDropdown(!dropdown);
-  };
+  const isActive = (href?: string) => href && activeLink === href;
 
   return (
-    <div className={styles.navwrap}>
-      <Link href="/">
-        <Image src="/logo-brand.png" width={40} height={50} alt="Logo" />
-      </Link>
+    <>
+      <header
+        className={`${styles.navwrap} ${scrolled && !menu ? styles.scrolled : ""} ${
+          menu ? styles.menuOpen : ""
+        }`}
+      >
+        <Link href="/" className={styles.brand} onClick={closeMenu}>
+          <Image src="/logo-brand.png" width={44} height={44} alt="TARV logo" />
+          <span>TARV</span>
+        </Link>
 
-      {menu ? (
-        <div className={`${styles.overlay} ${fadeOut ? "fadeOut" : ""}`}>
+        <nav className={styles.desktopmenu} aria-label="Primary">
           {NAV_LINKS.map((eachlink) =>
             eachlink.children ? (
-              <div key={eachlink.key}>
-                <button
-                  onClick={handleDropdownToggle}
-                  className={styles.dropdownToggle}
-                >
+              <div key={eachlink.key} className={styles.dropdownParent}>
+                <button type="button" className={styles.dropdownToggle} aria-haspopup="true">
                   {eachlink.text}
-                  {dropdown ? <MdOutlineKeyboardArrowDown /> : <MdOutlineKeyboardArrowRight />}
+                  <span className={styles.chevron} aria-hidden>
+                    ▾
+                  </span>
                 </button>
-                {dropdown && (
-                  <ul className={styles.dropdownMenu}>
-                    {eachlink.children.map((child) => (
-                      <li key={child.key}>
-                        <Link
-                          href={child.href}
-                          className={
-                            activeLink === child.href
-                              ? styles.active
-                              : styles.mobilelist
-                          }
-                          onClick={handleCloseMenu}
-                        >
-                          {child.text}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <ul className={styles.dropdownMenu}>
+                  {eachlink.children.map((child) => (
+                    <li key={child.key}>
+                      <Link
+                        href={child.href}
+                        className={isActive(child.href) ? styles.active : styles.menulist}
+                      >
+                        {child.text}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
             ) : (
-              <li key={eachlink.key}>
-                <Link
-                onClick={handleCloseMenu}
-                  href={eachlink.href}
-                  className={
-                    activeLink === eachlink.href
-                      ? styles.active
-                      : styles.mobilelist
-                  }
-                >
-                  {eachlink.text}
-                </Link>
-              </li>
-            )
-          )}
-        </div>
-      ) : (
-        <ul className={styles.desktopmenu}>
-          {NAV_LINKS.map((eachlink) =>
-            eachlink.children ? (
-              <li
+              <Link
                 key={eachlink.key}
-                className={styles.dropdownParent}
-                onMouseEnter={handleDropdownToggle}
-                onMouseLeave={handleDropdownToggle}
+                href={eachlink.href!}
+                className={isActive(eachlink.href) ? styles.active : styles.menulist}
               >
-                <button className={styles.dropdownToggle}>
-                  {eachlink.text}
-                  {dropdown ? <MdOutlineKeyboardArrowDown /> : <MdOutlineKeyboardArrowRight />}
-                </button>
-                {dropdown && (
-                  <ul className={styles.dropdownMenu}>
-                    {eachlink.children.map((child) => (
-                      <li key={child.key}>
-                        <Link
-                          href={child.href}
-                          className={
-                            activeLink === child.href
-                              ? styles.active
-                              : styles.menulist
-                          }
-                        >
-                          {child.text}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </li>
-            ) : (
-              <li key={eachlink.key}>
+                {eachlink.text}
+              </Link>
+            )
+          )}
+          <Link href="/contact" className={styles.cta}>
+            Partner with us
+          </Link>
+        </nav>
+
+        <button
+          type="button"
+          className={`${styles.hamburger} ${menu ? styles.open : ""}`}
+          onClick={() => setMenu((v) => !v)}
+          aria-label={menu ? "Close menu" : "Open menu"}
+          aria-expanded={menu}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </header>
+
+      {menu && (
+        <div className={styles.overlay} role="dialog" aria-modal="true" aria-label="Mobile menu">
+          <nav className={styles.overlayNav}>
+            {NAV_LINKS.map((eachlink) =>
+              eachlink.children ? (
+                <div key={eachlink.key} className={styles.mobileGroup}>
+                  <button
+                    type="button"
+                    onClick={() => setMobileDropdown((v) => !v)}
+                    className={styles.dropdownToggle}
+                    aria-expanded={mobileDropdown}
+                  >
+                    {eachlink.text}
+                    <span className={styles.chevron}>{mobileDropdown ? "▾" : "▸"}</span>
+                  </button>
+                  {mobileDropdown && (
+                    <ul className={styles.mobileDropdown}>
+                      {eachlink.children.map((child) => (
+                        <li key={child.key}>
+                          <Link
+                            href={child.href}
+                            className={
+                              isActive(child.href) ? styles.active : styles.mobilelist
+                            }
+                            onClick={closeMenu}
+                          >
+                            {child.text}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ) : (
                 <Link
-                  href={eachlink.href}
-                  className={
-                    activeLink === eachlink.href
-                      ? styles.active
-                      : styles.menulist
-                  }
+                  key={eachlink.key}
+                  href={eachlink.href!}
+                  className={isActive(eachlink.href) ? styles.active : styles.mobilelist}
+                  onClick={closeMenu}
                 >
                   {eachlink.text}
                 </Link>
-              </li>
-            )
-          )}
-        </ul>
+              )
+            )}
+            <Link href="/contact" className={styles.cta} onClick={closeMenu}>
+              Partner with us
+            </Link>
+          </nav>
+        </div>
       )}
-
-      <div className={styles.hamburger} onClick={handleMenuToggle}>
-        {menu ? (
-          <MdClose size={25} style={{ color: "rgb(11, 190, 23)" }} />
-        ) : (
-          <Image
-            src="/icon-hamburger.svg"
-            width={30}
-            height={10}
-            alt="menu icon"
-          />
-        )}
-      </div>
-    </div>
+    </>
   );
 };
+
 export default Navbar;

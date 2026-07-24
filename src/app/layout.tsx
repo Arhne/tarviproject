@@ -1,23 +1,21 @@
 "use client";
-import { Poppins, Open_Sans, Josefin_Sans } from "next/font/google";
+
+import { Syne, Figtree } from "next/font/google";
 import "./globals.scss";
-import Navbar from "./components/navbar/navbar";
-import Footer from "./components/footer";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import SiteChrome from "./components/site-chrome";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-const opensans = Open_Sans({ 
-  weight: ["400", "500", "700", "800"],
-  style: ["normal"],
+const syne = Syne({
+  weight: ["500", "600", "700", "800"],
   subsets: ["latin"],
- });
+  variable: "--font-display",
+});
 
- const josesans = Josefin_Sans({ 
-  weight: ["400", "500", "700"],
-  style: ["normal"],
+const figtree = Figtree({
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
- });
-
-
+  variable: "--font-body",
+});
 
 const queryClient = new QueryClient();
 
@@ -28,15 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-     
-     <body className={josesans.className}>
-      <Navbar/> 
-      <QueryClientProvider client={queryClient}>
-      <main className='relative overflow-hidden'>
-      {children}
-      </main> 
-      </QueryClientProvider>
-      <Footer/> 
+      <body className={`${syne.variable} ${figtree.variable}`}>
+        <QueryClientProvider client={queryClient}>
+          <SiteChrome>{children}</SiteChrome>
+        </QueryClientProvider>
       </body>
     </html>
   );
